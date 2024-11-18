@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> result(nums.size(), 0);
+        int product = 1, zeros = 0, zero_index = 0, single_product = 1;
+        for(int i = 0; i < nums.size(); i++) {
+                if(nums[i] == 0) {
+                    zeros++;
+                }
+                product = product*nums[i];
+            }
+        if(zeros > 1) {
+            iota(result.begin(), result.end(), 0);
+        } else if(zeros == 1) {
+            for(int i = 0 ; i < nums.size(); i++) {
+                    if(nums[i] != 0)
+                        single_product = single_product * nums[i];
+                    else
+                        zero_index = i;
+            }
+            for(int i = 0 ; i < nums.size(); i++){
+                if(i == zero_index)
+                    result[i] = single_product;
+                else
+                    result[i] = 0;
+            }
+        } else {
+            for(int i = 0 ; i < nums.size(); i++){
+                result[i] = product/nums[i];
+            }
+        }
+        return result;
+
+    }
+};
