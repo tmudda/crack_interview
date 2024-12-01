@@ -7,9 +7,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main() 
+{
 
-    string sentence = "I see AN OWL in a tree over there";
+	string sentence = "I see AN OWL in a tree over there";
   
   	vector<char> owels = {'a','e','i','o','u'};
   
@@ -19,31 +20,32 @@ int main() {
   	unordered_map<string,int> word_owel_count; //storing word and owel count in a map
   
   	for(int i = 0; i < sentence.size(); i++)
-    {
-      	if(sentence[i] == ' ')
         {
-          	word_owel_count[word] = owel_count;
-          	word="";
-          	owel_count = 0;
-        }
-      	else
-        {
-          	auto found = find(owels.begin(), owels.end(), tolower(sentence[i]));
-          	if(found != owels.end())
-            {
-              	owel_count++;
-            }
-            word += sentence[i];	
-        }  	
-    }
-  	if(!word.empty())
-    {
-      	word_owel_count[word] = owel_count;
-    }
+      		if(sentence[i] == ' ')
+        	{
+          		word_owel_count[word] = owel_count;
+          		word="";
+          		owel_count = 0;
+        	}
+      		else
+        	{
+          		auto found = find(owels.begin(), owels.end(), tolower(sentence[i]));
+          		if(found != owels.end())
+            		{
+              			owel_count++;
+            		}
+            		word += sentence[i];	
+        	}  	
+    	}
+  	if(!word.empty()) // to store the last word and its count
+    	{
+      		word_owel_count[word] = owel_count;
+    	}
+
 	for(auto w : word_owel_count) //auto keyword will be used to accept any type of data
    	{
-          cout << w.first << " " << w.second << endl;
-    }
+        	cout << w.first << " " << w.second << endl;
+    	}
                                                            
-    return 0;
+    	return 0;
 }
